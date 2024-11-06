@@ -38,6 +38,10 @@ public class Member {
 		this.regdate = regdate;
 	}
 //	
+	public int getNum() {
+		return 10;
+	}
+	
 	public static class M {
 		String id;	
 		String pw;

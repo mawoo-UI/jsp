@@ -19,15 +19,12 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-//			String sql = "INSERT into tbl_member (id,pw, name) values('"+ member.getEmail()
-//			+ "','"+member.getPw()+ "','" + member.getName()+ "')";
-
-			String sql = "insert into tbl_member (id, pw, name, email, road_addr, detail_addr) values(?,?,?,?,?,?)";
+			String sql = "insert into tbl_member (id, pw, name, email, road_addr, detail_addr)"
+					+"values(?,?,?,?,?,?)";
 
 			// 1. connection 객체 취득
 			conn = DBconn.getConnection();
 			// 2. 문장 생성,파라미터 지정\
-//			Statement stmt = conn.createStatement();
 			pstmt = conn.prepareStatement(sql);
 
 			int idx = 1;
