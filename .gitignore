@@ -1,3 +1,6 @@
 /.metadata/
 /Servers/
 **/build
+**/.classpath
+**/.project
+**/.settings
