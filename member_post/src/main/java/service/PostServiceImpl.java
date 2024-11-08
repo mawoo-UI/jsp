@@ -6,6 +6,7 @@ import dao.PostDao;
 import vo.Post;
 
 public class PostServiceImpl implements PostService {
+
 	private PostDao dao = new PostDao();
 
 	@Override
@@ -31,6 +32,11 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public List<Post> list() {
 		return dao.selectList();
+	}
+	@Override
+	public Post view(Long pno) {
+		dao.increaseViewCount(pno);
+		return findBy(pno);
 	}
 	
 	

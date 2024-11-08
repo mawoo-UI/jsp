@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import utils.DBconn;
+import utils.DBConn;
 import vo.Member;
 import vo.Post;
 
@@ -19,7 +19,7 @@ public class PostDao {
 		try {
 			String sql = "insert into tbl_post (title, writer, content) "
 					+"values(?,?,?)";
-			conn = DBconn.getConnection();
+			conn = DBConn.getConnection();
 			pstmt = conn.prepareStatement(sql);
 
 			int idx = 1;
@@ -43,7 +43,7 @@ public class PostDao {
 	public Post selectOne(Long pno) {
 		Post post= null;
 		String sql ="select pno, title , writer, content, view_count, regdate, updatedate from tbl_post where pno = ?";
-		try(Connection conn = DBconn.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		try(Connection conn = DBConn.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setLong(1, pno);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -71,7 +71,7 @@ public class PostDao {
 		List<Post> posts = new ArrayList<>();
 		String sql ="select pno, title , writer, view_count, regdate  from tbl_post order by 1 desc";
 		
-		try(Connection conn = DBconn.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		try(Connection conn = DBConn.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				int idx = 1;
@@ -99,7 +99,7 @@ public class PostDao {
 		PreparedStatement pstmt = null;
 		try {
 			String sql = "update tbl_post set title = ?, content =?, updatedate= now() where pno = ?";
-			conn = DBconn.getConnection();
+			conn = DBConn.getConnection();
 			pstmt = conn.prepareStatement(sql);
 
 			int idx = 1;
@@ -120,6 +120,31 @@ public class PostDao {
 		return 0;
 	}
 	
+	public int increaseViewCount (Long pno) {
+		Connection conn = null;
+
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "update tbl_post set view_count = view_count +1 where pno = ?";
+			conn = DBConn.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			int idx = 1;
+
+			pstmt.setLong(idx++, pno);
+			
+			return pstmt.executeUpdate();
+
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+//				conn.close();
+			} catch (SQLException ignore) {}
+		}
+		return 0;
+	}
 	
 	public int delete(Long pno) {
 		Connection conn = null;
@@ -127,7 +152,7 @@ public class PostDao {
 		PreparedStatement pstmt = null;
 		try {
 			String sql = "delete from tbl_post where pno = ?";
-			conn = DBconn.getConnection();
+			conn = DBConn.getConnection();
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setLong(1, pno);

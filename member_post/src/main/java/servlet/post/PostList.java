@@ -19,7 +19,7 @@ public class PostList extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setAttribute("posts", Service.list());
-		req.getRequestDispatcher("/WEB-INF/jsp/post/view.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/jsp/post/list.jsp").forward(req, resp);
 	}
 	
 }

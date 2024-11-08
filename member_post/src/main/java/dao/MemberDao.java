@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 import javax.naming.spi.DirStateFactory.Result;
 
-import utils.DBconn;
+import utils.DBConn;
 import vo.Member;
 
 public class MemberDao {
@@ -23,7 +23,7 @@ public class MemberDao {
 					+"values(?,?,?,?,?,?)";
 
 			// 1. connection 객체 취득
-			conn = DBconn.getConnection();
+			conn = DBConn.getConnection();
 			// 2. 문장 생성,파라미터 지정\
 			pstmt = conn.prepareStatement(sql);
 
@@ -68,7 +68,7 @@ public class MemberDao {
 	public Member selectOne(String id) {
 		Member member = null;
 		String sql ="select * from tbl_member where id = ?";
-		try(Connection conn = DBconn.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		try(Connection conn = DBConn.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {

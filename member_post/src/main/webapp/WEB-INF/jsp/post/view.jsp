@@ -24,17 +24,20 @@
                 <input type="text" class="form-control" id="regdate" placeholder="regdate" name="regdate" value="${post.regdate}" disabled>
 
                 <label for="updatedate" class="form-label mt-3"><i class="fa-regular fa-clock text-danger"></i><b> updated Date</b></label>
-                <input type="text" class="form-control" id="writer" placeholder="updatedate" name="updatedate" value="${post.updatedate}" disabled>
-
+                <input type="text" class="form-control" id="updatedate" placeholder="updatedate" name="updatedate" value="${post.updatedate}" disabled>
 
                 <div class="text-center my-5">
+ 	                <c:if test="${post.writer == member.id }">
+                    <a href="modify?pno=${post.pno}" class="btn btn-warning">수정</a>
+                    <a href="remove?pno=${post.pno}" class="btn btn-danger" onclick="return confirm('삭제하시겠습니까?')">삭제</a>
+                    </c:if>
                     <a href="list" class="btn btn-primary">목록</a>
                 </div>
             </div>
         </main>
+    	<jsp:include page="../common/footer.jsp"/>
+  	 </div>
   
-        
-
 </body>
 
 </html>

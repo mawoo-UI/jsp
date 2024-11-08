@@ -11,17 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.PostService;
 import service.PostServiceImpl;
+import utils.Commons;
 
 
 @WebServlet("/post/view")
 public class View extends HttpServlet{
-	private PostService Service = new PostServiceImpl();
+	private PostService service = new PostServiceImpl();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String pnoString = req.getParameter("pno");
-		Long bno = pnoString == null ? 1L : Long.valueOf(pnoString);
+		if(pnoString == null) {
+			Commons.printMsg("비정상적인 접근입니다.", "list", resp);
+			return;
+		}
+		Long pno = Long.valueOf(pnoString);
 		
-		req.setAttribute("posts", Service.findBy(bno));
+		req.setAttribute("post", service.view(pno));
 		req.getRequestDispatcher("/WEB-INF/jsp/post/view.jsp").forward(req, resp);
 	
 	}
