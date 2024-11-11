@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import dao.PostDao;
+import dto.Criteria;
 import vo.Post;
 
 public class PostServiceImpl implements PostService {
@@ -30,9 +31,15 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> list() {
-		return dao.selectList();
+	public List<Post> list(Criteria cri) {
+		return dao.selectList(cri);
 	}
+	
+	@Override
+	public int count(Criteria cri) {
+		return dao.getCount(cri);
+	}
+
 	@Override
 	public Post view(Long pno) {
 		dao.increaseViewCount(pno);

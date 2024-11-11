@@ -13,6 +13,7 @@
         	  <div class="clearfix py-4">
         		<h2 class ="float-start">Post write</h2>
               </div>
+              
 			  <div class="my-3 col md-9 mx-auto">    
 				  <form method="post">
 				   		
