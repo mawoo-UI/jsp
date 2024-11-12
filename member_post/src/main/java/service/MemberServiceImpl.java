@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import dao.MemberDao;
 import mapper.MemberMapper;
 import mapper.PostMapper;
 import utils.MybatisInit;

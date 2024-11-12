@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import dao.PostDao;
 import dto.Criteria;
 import mapper.PostMapper;
 import utils.MybatisInit;
@@ -12,7 +11,6 @@ import vo.Post;
 
 public class PostServiceImpl implements PostService {
 
-	private PostDao dao = new PostDao();
 
 	@Override
 	public int write(Post post) {
