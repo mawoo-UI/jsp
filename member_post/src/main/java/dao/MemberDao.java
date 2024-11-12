@@ -50,6 +50,7 @@ public class MemberDao {
 	}
 
 	public static void main(String[] args) {
+
 //		MemberDao dao = new MemberDao();
 //		int result = dao.insert(Member.builder().id("cccc").pw("1234").name("소똥이").build());
 //		System.out.println(result);
@@ -57,6 +58,7 @@ public class MemberDao {
 		Member m = dao.selectOne("ddd");
 		System.out.println(m);
 	}
+	
 	private static final MemberDao dao = new MemberDao();
 	
 	public static MemberDao getInstance() {
