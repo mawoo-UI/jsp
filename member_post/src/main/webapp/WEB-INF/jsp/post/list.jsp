@@ -25,16 +25,19 @@
 	                    </tr>
                   	</thead>
                   <tbody>
-                  <c:forEach items="${posts}" var="p">
-	                    <tr>
-	                      <td>${p.pno}</td>
-	                      <td class="text-truncate text-start"><a href="view?pno=${p.pno}&${pageDto.cri.qs2}" class="text-decoration-none">${p.title}</a></td>
-	                      <td>${p.writer}</td>
-	                      <td>${p.regdate }</td>
-	                      <td>${p.viewCount}</td>
-	                    </tr>
-                    </c:forEach>
-                  	</tbody>
+                   <c:forEach items="${posts}" var="p">
+                	<tr>
+                    <td>${p.pno}</td>
+                    <td class="text-truncate text-start">
+                    	<a href="view?pno=${p.pno}&${pageDto.cri.qs2}" class="text-decoration-none">${p.title}</a>
+                    	<c:if test="${p.attachFlag}"><i class="fa-solid fa-paperclip text-primary"></i></c:if> 
+	                    </td>
+	                    <td>${p.writer}</td>
+	                    <td>${p.regdate}</td>
+	                    <td>${p.viewCount}</td>
+                	</tr>
+                	</c:forEach>
+                	</tbody>
                 </table>
                 ${pageDto}
                   <ul class="pagination justify-content-center my-5">
