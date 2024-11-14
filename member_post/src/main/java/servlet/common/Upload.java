@@ -20,6 +20,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.codehaus.jackson.map.ObjectMapper;
 
+import utils.Commons;
 import vo.Attach;
 
 @WebServlet("/upload")
@@ -29,8 +30,8 @@ public class Upload extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 			factory.setSizeThreshold(1024 * 1024);
-			factory.setRepository(new File("c:/upload/tmp"));
-			
+			factory.setRepository(new File(Commons.UPLOAD_PATH + File.separator + "tmp"));
+			//실행시점이 아닌경우 상수는 소문자로
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			List<Attach> attachs = new ArrayList<>();
 			try {
@@ -48,7 +49,7 @@ public class Upload extends HttpServlet {
 					String uuid = UUID.randomUUID().toString();
 					String realName= uuid +ext;
 					String path = getTodayStr();
-					File parentPath = new File("c:/upload", getTodayStr());
+					File parentPath = new File(Commons.UPLOAD_PATH, path);
 					if(!parentPath.exists()) {
 						parentPath.mkdirs();
 					}
