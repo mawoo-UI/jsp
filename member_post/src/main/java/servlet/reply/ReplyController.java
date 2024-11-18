@@ -32,10 +32,21 @@ public class ReplyController extends HttpServlet{
 		  int tmpIdx =  uri.lastIndexOf("/");
 		   Long pno = 0L;
 		   if(tmpIdx != -1) {
+			   String tmp = uri.substring(tmpIdx+1);
+			   String[] tmpArr = tmp.split("/");
+			   switch (tmpArr.length) {
+			case 0: {
+				break;
+			}
+			
+			default:
+				break;
+					
+			}
 			   pno = Long.valueOf(uri.substring(tmpIdx+1));
+			   
 		   }
 		   ret = service.list(pno);
-		   System.out.println(ret);
 	}
 	   else {
 		Long rno = Long.valueOf(uri);
