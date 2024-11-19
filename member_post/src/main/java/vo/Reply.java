@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Reply {
@@ -16,8 +15,11 @@ public class Reply {
 	private String content;
 	private Date regdate;
 	private Date updatedate;
-	private boolean hidden;
+	private Boolean hidden;
 	private int likes;
 	private String writer;
 	private Long pno;
+
+	
+	
 }

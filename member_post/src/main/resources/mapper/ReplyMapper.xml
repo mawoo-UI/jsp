@@ -24,13 +24,19 @@
 	</select>
 	
 	<select id="selectList" resultType="vo.Reply">
-	select * from tbl_reply where pno = #{pno}
 	select *
 	from tbl_reply tr
-	where pno = 257
-	and rno > 0
+	where pno = #{pno}
+	and rno > #{cri.lastRno}
 	order by rno 
-	limit 5;
+	limit #{cri.amount};
 	</select>
-	
+	<select id="selectListByMe" resultType="vo.Reply">
+	select *
+	from tbl_reply
+	where writer ='abcd'
+	and pno = 1057
+	order by rno desc 
+	limit 3
+	</select>
 </mapper>

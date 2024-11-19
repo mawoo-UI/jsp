@@ -17,10 +17,17 @@ const replyService = (function () {
             
         })
     }    
-    function list(pno, callback) {
-        $.getJSON(url + "/list/" + pno).done(function(data) {
+    function list(pno, cri, callback) {
+		let reformedUrl = url + "/list/" + pno;
+		if(cri && cri.lastRno) {
+			reformedUrl += "/" + cri.lastRno;
+			if(cri.amount) {
+				reformedUrl += "/" + cri.amount
+			}
+		}
+        $.getJSON(reformedUrl).done(function(data) {
             if(callback)
-           	 callback(data);
+           	callback(data);
         });
     }
     function view(rno, callback) {
